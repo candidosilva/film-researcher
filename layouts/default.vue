@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="relative h-screen">
     <header class="bg-gray-900">
       <div class="container mx-auto flex h-14 items-center">
         <NuxtLink to="/" class="flex items-center">
@@ -25,7 +25,9 @@
 
     <slot />
 
-    <footer class="bg-slate-950 flex justify-end py-4 container mx-auto">
+    <footer
+      class="bg-slate-950 flex justify-end py-4 container mx-auto absolute bottom-0 left-0"
+    >
       <span class="text-sm mr-2"> powered by </span>
       <img src="/assets/TMDB-Logo.svg" width="100" height="100" />
     </footer>
