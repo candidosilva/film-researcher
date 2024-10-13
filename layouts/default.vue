@@ -25,6 +25,10 @@
 
     <slot />
 
+    <ClientOnly>
+      <Message />
+    </ClientOnly>
+
     <footer
       class="bg-slate-950 flex justify-end py-4 container mx-auto absolute bottom-0 left-0"
     >
@@ -33,3 +37,5 @@
     </footer>
   </div>
 </template>
+
+<script setup lang="ts"></script>

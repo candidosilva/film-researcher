@@ -15,4 +15,5 @@ export default <Partial<Config>>{
     },
     extend: {},
   },
+  safelist: ["hidden"],
 };
