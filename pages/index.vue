@@ -4,37 +4,12 @@
 
     <HomeMovieCards :movies="movies?.results" />
 
-    <div class="mt-4 mb-16 flex mx-auto">
-      <button
-        class="flex items-center justify-center px-4 h-10 border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
-        :disabled="isFirstPage"
-        @click="prev"
-      >
-        prev
-      </button>
-      <button
-        v-for="item in pageCount"
-        :key="item"
-        :class="{ 'bg-gray-700 text-white': page === item }"
-        class="flex items-center justify-center px-4 h-10 border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
-        :disabled="page === item"
-        @click="currentPage = item"
-      >
-        {{ item }}
-      </button>
-      <button
-        class="flex items-center justify-center px-4 h-10 border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
-        :disabled="isLastPage"
-        @click="next"
-      >
-        next
-      </button>
-    </div>
+    <HomePagination v-model="page" :total-results="movies.total_results"/>
   </main>
 </template>
 
 <script setup lang="ts">
-import { useDateFormat, useOffsetPagination } from "@vueuse/core";
+import { useDateFormat } from "@vueuse/core";
 
 const runtimeConfig = useRuntimeConfig();
 const messageStore = useMessageStore();
@@ -69,16 +44,5 @@ const { data: movies } = await useFetch<any>(
   }
 );
 
-const { currentPage, pageCount, isFirstPage, isLastPage, prev, next } =
-  useOffsetPagination({
-    total: movies.value.total_results,
-    page: 1,
-    pageSize: 20,
-    onPageChange: changePage,
-    onPageSizeChange: changePage,
-  });
 
-function changePage() {
-  page.value = currentPage.value;
-}
 </script>
