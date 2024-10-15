@@ -15,5 +15,5 @@ export default <Partial<Config>>{
     },
     extend: {},
   },
-  safelist: ["hidden"],
+  // safelist: ["hidden", "text-red-500", "text-yellow-500", "text-green-500"],
 };

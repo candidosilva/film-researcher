@@ -1,0 +1,32 @@
+<template>
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-5 gap-y-10">
+    <div v-for="(card, index) in movies" :key="index" class="flex flex-col">
+      <div class="relative">
+        <NuxtImg
+          :src="`https://image.tmdb.org/t/p/original/${card.poster_path}`"
+          class="rounded-lg"
+          width="100%"
+          loading="lazy"
+        />
+
+        <HomeVoteAverage :vote-average="card.vote_average" />
+      </div>
+
+      <div class="text-white text-lg mt-5">{{ card.original_title }}</div>
+      <div class="text-zinc-400 text-lg">{{ card.release_date }}</div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+interface Card {
+  poster_path: string;
+  vote_average: number;
+  original_title: string;
+  release_date: string;
+}
+interface Props {
+  movies?: Card[];
+}
+const { movies = [] } = defineProps<Props>();
+</script>
