@@ -6,7 +6,6 @@
           :src="`https://image.tmdb.org/t/p/original/${card.poster_path}`"
           class="rounded-lg"
           width="100%"
-          loading="lazy"
         />
 
         <HomeVoteAverage :vote-average="card.vote_average" />
@@ -20,13 +19,13 @@
 
 <script setup lang="ts">
 interface Card {
-  poster_path: string;
-  vote_average: number;
-  original_title: string;
-  release_date: string;
+  poster_path: string
+  vote_average: number
+  original_title: string
+  release_date: string
 }
 interface Props {
-  movies?: Card[];
+  movies?: Card[]
 }
-const { movies = [] } = defineProps<Props>();
+const { movies = [] } = defineProps<Props>()
 </script>
