@@ -7,7 +7,7 @@
         <div class="flex flex-1">
           <NuxtImg
             :src="`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`"
-            class="rounded-lg"
+            class="rounded-lg sm:w-[312px] sm:h-[394px] md:w-[376px] md:h-[364px] lg:w-[504px] lg:h-[322px] xl:w-[632px] xl:h-[360px] 2xl:w-[760px] 2xl:h-[427px]"
             loading="lazy"
           />
         </div>
