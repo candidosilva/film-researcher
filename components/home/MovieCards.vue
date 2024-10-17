@@ -1,6 +1,11 @@
 <template>
   <div class="grid grid-cols-1 lg:grid-cols-5 gap-5 gap-y-10">
-    <div v-for="(card, index) in movies" :key="index" class="flex flex-col">
+    <div
+      v-for="(card, index) in movies"
+      :key="index"
+      class="flex flex-col cursor-pointer"
+      @click="$router.push(`/${card.id}`)"
+    >
       <div class="relative">
         <NuxtImg
           :src="`https://image.tmdb.org/t/p/original/${card.poster_path}`"
@@ -19,13 +24,14 @@
 
 <script setup lang="ts">
 interface Card {
-  poster_path: string
-  vote_average: number
-  original_title: string
-  release_date: string
+  poster_path: string;
+  vote_average: number;
+  original_title: string;
+  release_date: string;
+  id: number;
 }
 interface Props {
-  movies?: Card[]
+  movies?: Card[];
 }
-const { movies = [] } = defineProps<Props>()
+const { movies = [] } = defineProps<Props>();
 </script>
