@@ -14,6 +14,7 @@
         v-else
         :src="`https://image.tmdb.org/t/p/original/${card.profile_path}`"
         class="rounded-t-lg w-36"
+        loading="lazy"
       />
 
       <div class="p-2">

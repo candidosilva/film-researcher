@@ -8,6 +8,7 @@
           <NuxtImg
             :src="`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`"
             class="rounded-lg"
+            loading="lazy"
           />
         </div>
 

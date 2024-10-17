@@ -14,8 +14,11 @@
       />
       <div v-else class="relative">
         <NuxtImg
+          ref="el"
           :src="`https://image.tmdb.org/t/p/original/${card.poster_path}`"
-          class="rounded-lg w-full h-full"
+          class="rounded-lg"
+          :style="{ width: width, height: height }"
+          loading="lazy"
         />
 
         <HomeVoteAverage :vote-average="card.vote_average" />
@@ -36,6 +39,8 @@
 </template>
 
 <script setup lang="ts">
+import { useElementSize } from "@vueuse/core";
+
 interface Movies {
   poster_path: string;
   vote_average: number;
