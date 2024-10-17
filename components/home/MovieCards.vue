@@ -16,8 +16,7 @@
         <NuxtImg
           ref="el"
           :src="`https://image.tmdb.org/t/p/original/${card.poster_path}`"
-          class="rounded-lg"
-          :style="{ width: width, height: height }"
+          class="rounded-lg sm:w-[200px] sm:h-[300px] md:w-[242px] md:h-[364px] lg:w-[189px] lg:h-[283px] xl:w-[240px] xl:h-[360px] 2xl:w-[291px] 2xl:h-[428px]"
           loading="lazy"
         />
 
@@ -39,8 +38,6 @@
 </template>
 
 <script setup lang="ts">
-import { useElementSize } from "@vueuse/core";
-
 interface Movies {
   poster_path: string;
   vote_average: number;
