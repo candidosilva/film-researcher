@@ -6,18 +6,29 @@
       class="flex flex-col cursor-pointer"
       @click="$router.push(`/${card.id}`)"
     >
-      <div class="relative">
+      <Icon
+        name="mdi:image-off-outline"
+        v-if="card.poster_path === null"
+        size="100"
+        class="w-full h-full"
+      />
+      <div v-else class="relative">
         <NuxtImg
           :src="`https://image.tmdb.org/t/p/original/${card.poster_path}`"
-          class="rounded-lg"
-          width="100%"
+          class="rounded-lg w-full h-full"
         />
 
         <HomeVoteAverage :vote-average="card.vote_average" />
       </div>
 
       <div class="text-white text-lg mt-5">{{ card.original_title }}</div>
-      <div class="text-zinc-400 text-lg">{{ card.release_date }}</div>
+      <div class="text-zinc-400 text-lg">
+        {{
+          card.release_date !== "Invalid Date NaN"
+            ? card.release_date
+            : "No date found"
+        }}
+      </div>
     </div>
   </div>
 </template>
