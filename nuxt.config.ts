@@ -21,4 +21,7 @@ export default defineNuxtConfig({
       apiKey: "e55edfef56b89bd20f77dc0e49b803b9",
     },
   },
+  image: {
+    domains: ["https://image.tmdb.org"],
+  },
 });
