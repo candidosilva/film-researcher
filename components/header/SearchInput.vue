@@ -23,9 +23,14 @@
 
 <script setup lang="ts">
 const moviesStore = useMoviesStore();
+const route = useRoute();
+const router = useRouter();
 
 function searchMovies() {
   if (moviesStore.search !== "") {
+    if (route.name === "id") {
+      router.push("/");
+    }
     moviesStore.searchMovies();
   }
 }
