@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-4 mb-16 flex mx-auto">
+  <div class="mt-4 mb-16 flex mx-auto flex-wrap">
     <button
       class="flex items-center justify-center px-4 h-10 border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
       :disabled="isFirstPage"

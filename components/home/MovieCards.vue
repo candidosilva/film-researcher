@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1 lg:grid-cols-5 gap-5 gap-y-10">
+  <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-5 gap-y-10">
     <div
       v-for="(card, index) in movies"
       :key="index"
@@ -21,13 +21,15 @@
         <HomeVoteAverage :vote-average="card.vote_average" />
       </div>
 
-      <div class="text-white text-lg mt-5">{{ card.original_title }}</div>
-      <div class="text-zinc-400 text-lg">
-        {{
-          card.release_date !== "Invalid Date NaN"
-            ? card.release_date
-            : "No date found"
-        }}
+      <div class="flex justify-between sm:flex-col">
+        <div class="text-white text-lg mt-5">{{ card.original_title }}</div>
+        <div class="text-zinc-400 text-lg mt-5 sm:mt-0">
+          {{
+            card.release_date !== "Invalid Date NaN"
+              ? card.release_date
+              : "No date found"
+          }}
+        </div>
       </div>
     </div>
   </div>

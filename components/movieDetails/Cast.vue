@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-1 flex-wrap gap-4">
+  <div class="flex flex-1 flex-wrap gap-4 justify-center sm:justify-normal">
     <div
       v-for="(card, index) in cast"
       :key="index"

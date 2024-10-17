@@ -1,9 +1,9 @@
 <template>
-  <main class="flex flex-col container mx-auto pb-14">
+  <main class="flex flex-col container mx-auto px-6 sm:px-0 pb-14">
     <MovieDetailsPageSkeleton v-if="status !== 'success'" />
 
     <div v-else>
-      <div class="flex mt-16">
+      <div class="flex flex-col sm:flex-row mt-0 sm:mt-16">
         <div class="flex flex-1">
           <NuxtImg
             :src="`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`"
@@ -14,12 +14,13 @@
         <MovieDetailsInfo :movie />
       </div>
 
-      <h1 class="mt-6 text-3xl mb-6">Cast</h1>
+      <h1 v-if="width >= 648" class="mt-6 text-3xl mb-6">Cast</h1>
 
-      <div class="flex">
+      <div class="flex flex-col-reverse sm:flex-row">
         <MovieDetailsCast :cast="movie.cast" />
 
-        <MovieDetailsVideo :movie />
+        <h1 v-if="width < 648" class="mt-6 text-3xl mb-6">Cast</h1>
+        <MovieDetailsVideo class="mt-4 sm:mt-0" :movie />
       </div>
     </div>
   </main>
@@ -30,6 +31,9 @@ const route = useRoute();
 const runtimeConfig = useRuntimeConfig();
 const messageStore = useMessageStore();
 import { useDateFormat } from "@vueuse/core";
+import { useWindowSize } from "@vueuse/core";
+
+const { width } = useWindowSize();
 
 const { data: movie, status } = useFetch(
   `https://api.themoviedb.org/3/movie/${route.params.id}?api_key=${runtimeConfig.public.apiKey}&append_to_response=videos,credits`,
