@@ -13,8 +13,14 @@
 </template>
 
 <script setup lang="ts">
+interface MovieSrc {
+  movieSrc: string;
+}
+interface Movie {
+  movie: MovieSrc;
+}
 import { useElementSize } from "@vueuse/core";
-defineProps({ movie: Object });
+defineProps<Movie>();
 
 const el = ref(null);
 const { width } = useElementSize(el);

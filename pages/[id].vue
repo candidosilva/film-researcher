@@ -27,6 +27,26 @@
 </template>
 
 <script setup lang="ts">
+interface Cast {
+  profile_path: string;
+  name: string;
+  character: string;
+  cast?: Cast[];
+}
+
+interface Credits {
+  cast: Cast[];
+}
+
+interface Movie {
+  backdrop_path: string;
+  cast: Cast[];
+  release_date: string;
+  runtime: number;
+  credits: Credits;
+  budget: number;
+}
+
 const route = useRoute();
 const runtimeConfig = useRuntimeConfig();
 const messageStore = useMessageStore();
@@ -38,19 +58,19 @@ const { width } = useWindowSize();
 const { data: movie, status } = useFetch(
   `https://api.themoviedb.org/3/movie/${route.params.id}?api_key=${runtimeConfig.public.apiKey}&append_to_response=videos,credits`,
   {
-    transform(input) {
+    transform(input: Movie) {
       return {
         ...input,
         movieSrc: `https://www.youtube.com/embed/${input.videos.results[0].key}`,
         release_date: useDateFormat(new Date(input.release_date), "MMMM YYYY", {
           locales: "en-US",
         }),
-        runtime: `${parseInt(input.runtime / 60)}h ${input.runtime % 60}min`,
+        runtime: `${parseInt(input.runtime / 60).toString()}h ${input.runtime % 60}min`,
         budget: input.budget.toLocaleString("en-US", {
           style: "currency",
           currency: "USD",
         }),
-        cast: input.credits.cast.filter((_, index) => index < 8),
+        cast: input.credits.cast.filter((_, index: number) => index < 8),
       };
     },
     onResponseError({ request, response, options }) {

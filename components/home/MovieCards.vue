@@ -22,7 +22,7 @@
       </div>
 
       <div class="flex justify-between sm:flex-col">
-        <div class="text-white text-lg mt-5">{{ card.original_title }}</div>
+        <div class="text-white text-lg mt-5">{{ card.title }}</div>
         <div class="text-zinc-400 text-lg mt-5 sm:mt-0">
           {{
             card.release_date !== "Invalid Date NaN"
@@ -36,15 +36,16 @@
 </template>
 
 <script setup lang="ts">
-interface Card {
+interface Movies {
   poster_path: string;
   vote_average: number;
-  original_title: string;
+  title: string;
   release_date: string;
   id: number;
 }
+
 interface Props {
-  movies?: Card[];
+  movies?: Movies[] | undefined;
 }
 const { movies = [] } = defineProps<Props>();
 </script>

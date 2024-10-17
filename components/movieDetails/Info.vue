@@ -1,6 +1,6 @@
 <template>
   <div class="ml-4 flex-1">
-    <h1 class="text-3xl mb-1">{{ movie.title }}</h1>
+    <h1 class="text-3xl mb-1 mt-4 sm:mt-0">{{ movie.title }}</h1>
     <p class="text-zinc-400">
       {{ movie.release_date }} - {{ movie.runtime }} - {{ movie.budget }}
     </p>
@@ -22,5 +22,20 @@
 </template>
 
 <script setup lang="ts">
-defineProps({ movie: Object });
+interface Genres {
+  name: string;
+}
+interface MovieInfo {
+  title: string;
+  release_date: string;
+  runtime: number;
+  budget: string;
+  genres: Genres[];
+  vote_average: number;
+  overview: string;
+}
+interface Movie {
+  movie: MovieInfo;
+}
+defineProps<Movie>();
 </script>
